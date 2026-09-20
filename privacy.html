@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>obd-dash — Privacy policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 38rem; margin: 0 auto; padding: 3rem 1rem;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+  .sub { color: #666; margin-top: 0; }
+  h2 { font-size: 1.1rem; margin-top: 2rem; }
+  ul { padding-left: 1.2rem; }
+  footer { margin-top: 3rem; font-size: .9rem; color: #666; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+
+<h1>Privacy policy</h1>
+<p class="sub">obd-dash · last updated 20 September 2026</p>
+
+<p>
+  obd-dash has no servers. Nothing it records is sent to the developer, and there is no account
+  to create in order to use it. Everything below describes data that stays on your phone, except
+  where you explicitly turn on backup to your own Google Drive.
+</p>
+
+<h2>What the app records</h2>
+<p>
+  While connected to your vehicle it reads standard OBD-II diagnostic data — engine speed,
+  road speed, coolant temperature, battery voltage, engine load, fuel trims, intake air
+  temperature and stored fault codes. From these it derives trip records: distance, fuel used,
+  duration and the extremes each drive reached.
+</p>
+<p>
+  It writes diagnostic log files to the phone's own storage, to make faults reproducible after a
+  drive. You can clear or export these at any time from Settings.
+</p>
+
+<h2>What it deliberately does not record</h2>
+<ul>
+  <li><strong>The vehicle identification number is never requested.</strong> The app does not ask
+      the car for it, so it cannot appear in any record or export.</li>
+  <li><strong>No location is stored.</strong> If you enable the optional speed comparison, the app
+      reads only the speed reported by the satellite receiver. Coordinates are never read, held
+      or written down.</li>
+  <li>Log files are filtered as they are written, so a vehicle identification number, a pair of
+      coordinates or the identifying half of a Bluetooth address cannot be recorded even
+      accidentally.</li>
+  <li>There is no analytics, crash reporting, advertising or tracking of any kind.</li>
+</ul>
+
+<h2>Permissions, and why each exists</h2>
+<ul>
+  <li><strong>Bluetooth</strong> — to connect to the ELM327 adapter. This is the only way the app
+      reaches the vehicle.</li>
+  <li><strong>Location</strong> — optional. Used solely to read the speed the satellite receiver
+      reports, for comparison against the car's own speedometer. Android classifies speed from
+      the receiver as a location permission; no position is read or kept.</li>
+  <li><strong>Notifications</strong> — optional, for the ongoing notification shown while the app
+      watches for the car starting.</li>
+  <li><strong>Network access</strong> — used only when Google Drive backup is turned on.</li>
+</ul>
+
+<h2>Google Drive backup</h2>
+<p>
+  This is optional and off until you turn it on. When you do, the app asks for permission to use
+  Google Drive and uploads a copy of your trip history and the vehicles you have set up, so the
+  same history is available on your other phones.
+</p>
+<ul>
+  <li>The app requests the <code>drive.file</code> permission, which grants access <em>only to
+      files the app itself creates</em>. It cannot see, read or alter anything else in your
+      Drive.</li>
+  <li>The files are stored in your own Google account, under your own storage quota. The
+      developer has no access to them and no copy of them.</li>
+  <li>The uploaded data is the same trip history the app already holds — dates, distances, fuel
+      figures, battery readings and fault codes — and the vehicle names you typed. It contains no
+      identification number and no location.</li>
+  <li>Diagnostic log files are never uploaded.</li>
+</ul>
+
+<h2>Removing your data</h2>
+<ul>
+  <li>Trips can be deleted individually, or the whole history cleared, from the History screen.</li>
+  <li>Uninstalling the app removes everything it stored on the phone.</li>
+  <li>To revoke Drive access, visit
+      <a href="https://myaccount.google.com/permissions">your Google account permissions</a>.
+      Deleting the app's folder from your Drive removes the uploaded copy.</li>
+</ul>
+
+<h2>Children</h2>
+<p>
+  The app is a vehicle instrument and is not directed at children. It collects no personal
+  information from anyone.
+</p>
+
+<h2>Changes</h2>
+<p>
+  If this policy changes, the date at the top changes with it. No change will make the app send
+  data anywhere without asking you first.
+</p>
+
+<footer>
+  <p>Questions and requests: <a href="https://github.com/FahimHT/obd-dash-app/issues">GitHub issues</a></p>
+</footer>
+
+</body>
+</html>
