@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OBD Dash manual</title>
+<meta name="description" content="How to set up and use OBD Dash, an auxiliary gauge cluster for Android.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0F1115; --panel: #191C22; --panel-edge: #23272E; --rule: #262A31; --frame: #2C313A;
+    --text: #C6C9D1; --head: #E9EAEE; --muted: #8C9099; --accent: #3DD68C;
+    --good-bg: #11241B; --good-edge: #1E4433; --warn-bg: #251D12; --warn-edge: #3E3020;
+    --sans: Archivo, system-ui, sans-serif; --serif: "Source Serif 4", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16.5px/1.58 var(--serif); }
+  main { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  a { color: var(--accent); }
+  a:hover { color: #7fe8b5; }
+  b { color: var(--head); font-weight: 600; }
+  p { margin: 0 0 .65rem; }
+  p:last-child { margin-bottom: 0; }
+
+  h1, h2, h3, .k, .num, .lede, nav { font-family: var(--sans); }
+  h1 { color: var(--head); font-size: 2.9rem; font-weight: 700; line-height: 1.02; letter-spacing: -.02em; margin: 0; }
+  h2 { color: var(--head); font-size: 1.45rem; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; margin: .55rem 0 0; max-width: 28em; }
+  h3 { color: var(--head); font-size: .95rem; font-weight: 600; line-height: 1.25; margin: 0 0 .4rem; }
+  /* The small green capitals that head a block below a rule. */
+  .k {
+    font-size: .74rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 .6rem;
+  }
+  .sm { font-size: .83rem; line-height: 1.5; color: var(--muted); }
+  nav { font-size: .9rem; margin-bottom: 2rem; }
+  nav a { color: var(--muted); }
+  hr { height: 1px; background: var(--rule); border: 0; margin: 1.4rem 0; }
+
+  header.cover { display: flex; align-items: center; gap: 1.3rem; }
+  .icon {
+    width: 80px; height: 80px; border-radius: 18px; background: #000; flex: none;
+    border: 1px solid var(--panel-edge); display: flex; align-items: center; justify-content: center;
+  }
+  .lede { color: #A8ACB5; font-size: 1.1rem; line-height: 1.3; margin: .45rem 0 0; }
+  .intro { margin-top: 1.6rem; }
+
+  .frame { border-radius: 10px; background: #000; box-shadow: 0 0 0 1px var(--frame); overflow: hidden; }
+  .frame img { display: block; width: 100%; height: auto; }
+  figure { margin: 1.4rem 0 0; }
+  figcaption { margin-top: .5rem; }
+
+  /* Three equal columns: what you need, the numbered steps. */
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+  .cols h3 { margin-bottom: .3rem; }
+  .num { font-size: 1.65rem; font-weight: 700; line-height: 1; color: var(--accent); margin-bottom: .4rem; }
+
+  /* Two blocks of prose side by side. */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  /* Prose beside a phone screenshot. */
+  .beside { display: flex; gap: 1.9rem; align-items: flex-start; margin-top: 1.3rem; }
+  .beside > .text { flex: 1; min-width: 0; }
+  .beside > .shot { width: 12.5rem; flex: none; }
+  .beside > .shot.narrow { width: 10rem; }
+  .shot .sm { margin-top: .55rem; }
+
+  .themes { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin-top: 1.1rem; }
+  .themes figure { margin: 0; }
+  .themes h3 { margin: .5rem 0 .15rem; }
+
+  .box {
+    background: var(--panel); box-shadow: inset 0 0 0 1px var(--panel-edge);
+    border-radius: 10px; padding: 1rem 1.15rem; margin-top: 1.4rem;
+  }
+  .box.good { background: var(--good-bg); box-shadow: inset 0 0 0 1px var(--good-edge); }
+  .box.warn { background: var(--warn-bg); box-shadow: inset 0 0 0 1px var(--warn-edge); }
+  .box .k { color: var(--head); }
+  .box.split { display: flex; gap: 1.1rem; align-items: center; }
+  .box.split > .frame { width: 16rem; flex: none; }
+  .info {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1em; height: 1em; border: 1px solid var(--head); border-radius: 50%;
+    font: 700 .65em var(--sans); vertical-align: .1em;
+  }
+
+  section { border-top: 1px solid var(--rule); margin-top: 2.6rem; padding-top: 2.2rem; }
+
+  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: var(--sans); }
+
+  @media (max-width: 44rem) {
+    .themes { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 40rem) {
+    h1 { font-size: 2.3rem; }
+    .cols, .pair { grid-template-columns: 1fr; gap: 1.1rem; }
+    .beside { flex-direction: column; }
+    .beside > .shot, .beside > .shot.narrow { width: min(14rem, 70%); align-self: center; }
+    .box.split { flex-direction: column; align-items: stretch; }
+    .box.split > .frame { width: 100%; }
+  }
+  @media (max-width: 30rem) {
+    .themes { grid-template-columns: repeat(2, 1fr); }
+    .icon { width: 64px; height: 64px; }
+    .icon svg { width: 56px; height: 56px; }
+  }
+
+  @media print {
+    :root { --bg: #fff; --panel: #f4f5f7; --panel-edge: #d9dce1; --rule: #d9dce1;
+            --good-bg: #ecf7f1; --good-edge: #bfe3cf; --warn-bg: #fbf3e7; --warn-edge: #ead6b6;
+            --text: #222; --head: #000; --muted: #555; --accent: #0a7a47; }
+    main { max-width: none; padding: 0; }
+    nav { display: none; }
+    section { break-before: page; border-top: 0; margin-top: 0; padding-top: 0; }
+    figure, .box, .shot { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<nav><a href="index.html">&larr; OBD Dash</a></nav>
+
+<header class="cover">
+  <div class="icon" aria-hidden="true">
+    <svg width="72" height="72" viewBox="18 18 72 72">
+      <path d="M32.96,69.28 A26 26 0 1 1 75.04,69.28" fill="none" stroke="#565A68" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M64.65,31.38 A25 25 0 0 1 77.58,45.69" fill="none" stroke="#3DD68C" stroke-width="6.5" stroke-linecap="round"/>
+      <path d="M59.39,49.54 L73.65,37.75" fill="none" stroke="#F4F4F7" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div>
+    <h1>OBD Dash</h1>
+    <p class="lede">Extra gauges for a car that doesn't have them, on an Android phone.</p>
+  </div>
+</header>
+
+<div class="intro">
+  <p>Your car measures far more than its dashboard shows. A small adapter plugs into a socket under
+    the steering wheel, your phone reads what the car reports over Bluetooth, and this app displays
+    it — temperatures, voltage, fuel economy, and a plain-English explanation of any warning
+    light.</p>
+  <p>Leave the phone in the car and it records every drive on its own. There is no account to make
+    and nothing is collected about you.</p>
+</div>
+
+<figure>
+  <div class="frame"><img src="img/on-mount.jpg" width="1100" height="312"
+       alt="The cockpit in the Neon Horizon theme on a phone mounted to a car dashboard"></div>
+  <figcaption class="sm">The cockpit in its Neon Horizon theme, sideways on a vent mount. Portrait
+    works just as well.</figcaption>
+</figure>
+
+<hr>
+<div class="k">What you need</div>
+<div class="cols">
+  <div><h3>An Android phone</h3><p class="sm">Version 12 or newer.</p></div>
+  <div><h3>An OBD2 adapter</h3><p class="sm">Bluetooth, sold everywhere. The inexpensive ones mostly work fine.</p></div>
+  <div><h3>A car built since ~2001</h3><p class="sm">Almost all of them have the socket this uses.</p></div>
+</div>
+
+<hr>
+<div class="k">Getting started</div>
+<div class="cols">
+  <div>
+    <div class="num">1</div>
+    <h3>Plug in the adapter</h3>
+    <p class="sm">The socket is under the dashboard on the driver's side, usually near your knees.</p>
+  </div>
+  <div>
+    <div class="num">2</div>
+    <h3>Pair it once</h3>
+    <p class="sm">In your phone's own Bluetooth settings. If it asks for a PIN, it is nearly always
+      1234 or 0000.</p>
+  </div>
+  <div>
+    <div class="num">3</div>
+    <h3>Choose it in the app</h3>
+    <p class="sm">Settings, then <b>Adapter</b>, and pick it from the paired list. Not listed? Pair
+      it in your phone's Bluetooth settings first, then tap <b>Refresh paired</b>.</p>
+  </div>
+</div>
+
+<div class="box">
+  <h3>Small circled <span class="info">i</span> marks, everywhere in the app</h3>
+  <p>Tap one and the app explains what that reading is and what a healthy value looks like. They sit
+    on every reading that isn't obvious, so nothing here needs prior knowledge of engines.</p>
+</div>
+
+<section>
+  <div class="k">The cockpit</div>
+  <h2>Everything on one screen. Nothing needs a tap while moving.</h2>
+  <p style="margin-top:.8rem">Speed, revs, load, economy, coolant and battery on one panel, with the
+    drive's totals underneath. It turns sideways with the phone, and one swipe brings up
+    <b>Diagnostics</b>. Pick its look in Settings, under <b>Layout</b>, then <b>Cockpit theme</b>.</p>
+
+  <div class="themes">
+    <figure>
+      <div class="frame"><img src="img/cockpit-standard.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Standard theme"></div>
+      <h3>Standard</h3><p class="sm">Plain figures and bars, the clearest at a distance.</p>
+    </figure>
+    <figure>
+      <div class="frame"><img src="img/cockpit-neon.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Neon Horizon theme"></div>
+      <h3>Neon Horizon</h3><p class="sm">Glowing dials; speed and revs share one.</p>
+    </figure>
+    <figure>
+      <div class="frame"><img src="img/cockpit-flight-deck.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Flight Deck theme"></div>
+      <h3>Flight Deck</h3><p class="sm">Aircraft tapes for speed and revs.</p>
+    </figure>
+    <figure>
+      <div class="frame"><img src="img/cockpit-chart-recorder.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Chart Recorder theme"></div>
+      <h3>Chart Recorder</h3><p class="sm">The last minute of each reading, as a trace.</p>
+    </figure>
+    <figure>
+      <div class="frame"><img src="img/cockpit-neon-warp.jpg" width="480" height="959" loading="lazy" alt="Neon Horizon in warp"></div>
+      <h3>Warp</h3><p class="sm">Neon Horizon on a hard pull or a steady cruise.</p>
+    </figure>
+  </div>
+
+  <hr>
+  <div class="pair">
+    <div>
+      <div class="k">The strip along the top</div>
+      <p>Always there: whether the phone has the car, whether the engine is running, and whether the
+        check engine light is on.</p>
+      <p>Anything serious takes it over, pulls you back to the dashboard and chimes: twice for
+        overheating or charging, once for a check engine light. Silent mode is respected.</p>
+    </div>
+    <div>
+      <div class="k">Reading it at a glance</div>
+      <p>Black with large, thin markings, because it is meant to be glanced at rather than read.
+        Green means a reading is where it should be, amber worth a look, red stop.</p>
+      <p>The display stays awake while the engine runs. If the phone isn't plugged in, turn that off
+        in Settings.</p>
+    </div>
+  </div>
+
+  <div class="box split">
+    <div class="frame"><img src="img/cluster.jpg" width="1000" height="437" loading="lazy"
+         alt="The Cluster screen, with round dials, in landscape"></div>
+    <div>
+      <h3>Prefer a simpler view with dials?</h3>
+      <p>Turn off <b>Cockpit layout</b> and the dashboard becomes four screens to swipe between —
+        Drive, Cluster, Economy and Diagnostics — with fewer, larger gauges each.</p>
+    </div>
+  </div>
+
+  <p class="sm" style="margin-top:1.1rem"><b>No adapter yet?</b> Settings has a <b>Simulated
+    drive</b> that runs every screen with no adapter and no car, and stays out of your real trip
+    history.</p>
+</section>
+
+<section>
+  <div class="k">After the drive</div>
+  <h2>Every drive is saved, and a slow change shows up in the charts.</h2>
+
+  <div class="beside">
+    <div class="shot frame"><img src="img/history.jpg" width="480" height="959" loading="lazy" alt="History screen"></div>
+    <div class="text">
+      <h3>History</h3>
+      <p>Reached from the clock icon in the dashboard footer. Every drive is listed with distance,
+        economy and fuel cost.</p>
+      <p>The two charts are the reason this screen exists. Battery voltage drifting down over weeks,
+        or peak coolant drifting up, is worth looking into. Neither shows up in one reading, only as
+        a line.</p>
+      <p>The second keeps economy in traffic apart from economy on the open road. Economy moves with
+        weather, traffic and how you drive, so read it as a trend rather than a verdict on the
+        engine.</p>
+      <hr>
+      <h3>It survives a new phone</h3>
+      <p>History exports to a spreadsheet and reads back in. Or turn on <b>Back up to Google
+        Drive</b>: sign in once on each phone and every drive, car and cost stays in step.</p>
+    </div>
+  </div>
+
+  <hr>
+  <div class="beside">
+    <div class="text">
+      <div class="k">One drive in detail</div>
+      <p>Tap any trip for what it cost, time moving versus stopped, the hottest the engine got, the
+        highest speed and the lowest the battery dropped.</p>
+      <p><b>Alerts raised</b> lists anything that went wrong, even briefly — a charging fault that
+        came and went is something you would otherwise never know about. <b>Worth a look</b> is
+        gentler: a reading outside its usual range, without being a fault.</p>
+      <hr>
+      <div class="k">More than one car</div>
+      <p>Cars are added and chosen in Settings, under <b>Car</b>. The name at the top of History
+        narrows the list to one car, and its charts and costs follow.</p>
+      <p>A drive saved under the wrong car can be opened and sent across with <b>Move to another
+        car</b>, or deleted from there. Deleting a car takes its trips with it.</p>
+    </div>
+    <div class="shot frame"><img src="img/trip-detail.jpg" width="480" height="959" loading="lazy" alt="Trip detail"></div>
+  </div>
+</section>
+
+<section>
+  <div class="k">Warnings, faults and inspections</div>
+  <h2>A warning light tells you something is wrong, the app tells you what.</h2>
+
+  <div class="beside">
+    <div class="text">
+      <h3>Fault codes, in plain English</h3>
+      <p>When the check engine light comes on, the car has stored a code explaining why. Tap
+        <b>Read</b> on Diagnostics and you get it as a sentence, not the five-character number a
+        cheap code reader gives you.</p>
+      <p>It also saves a snapshot of what the engine was doing at the time. The same code at cold
+        idle and at motorway speed often points somewhere different, and the snapshot is what a
+        mechanic will want to see.</p>
+      <hr>
+      <h3>Before you clear a warning light</h3>
+      <p>The app can clear a stored fault, behind a confirmation. Clearing fixes nothing — if the
+        cause remains, the car records it again, often within a day.</p>
+      <p>It also erases that snapshot and resets the self-tests below, so the car will <b>fail an
+        inspection</b> until it has been driven enough to finish them. Useful after a repair; a bad
+        idea the morning of an inspection.</p>
+    </div>
+    <div class="shot narrow">
+      <div class="frame"><img src="img/diagnostics.jpg" width="480" height="959" loading="lazy" alt="Diagnostics screen"></div>
+      <p class="sm">Diagnostics, with every self-test passed and no stored faults.</p>
+    </div>
+  </div>
+
+  <div class="box good">
+    <h3>Check this before you drive to a testing station</h3>
+    <p>Your car runs its own emissions self-tests as you drive, and an inspection fails if they
+      haven't all finished — even with nothing wrong with the car. Disconnecting the battery or
+      clearing a fault resets them.</p>
+    <p>Diagnostics lists them and says whether you are ready. If any are outstanding, a mix of town
+      and open-road driving over a day or two usually finishes them.</p>
+  </div>
+
+  <hr>
+  <div class="k">If a reading is missing, or something isn't working</div>
+  <p>Settings reports what your car and adapter turned out to be capable of, including any readings
+    your car doesn't provide — normal, and it varies by model. <b>Share log files</b> bundles the
+    app's own records to be sent on; nothing identifying goes in them.</p>
+
+  <div class="box">
+    <h3>Fuel, costs and units</h3>
+    <p>Tell the app what you pay per litre or gallon and every drive shows its cost. Metric or
+      imperial changes only the display, never what is recorded. <b>FUEL CUT</b> in place of economy
+      is normal: coasting, or a hybrid on its battery, burns nothing.</p>
+  </div>
+</section>
+
+<section>
+  <div class="k">Setting it up, and living with it</div>
+  <h2>Set up once and you can stop opening the app altogether.</h2>
+
+  <div class="beside">
+    <div class="text">
+      <h3>It can start itself</h3>
+      <p>Turn on <b>Watch the car in the background</b> and the app connects on its own, records the
+        drive and lets go when you park. A notification shows what it is doing and can stop it.</p>
+      <p><b>Wake the screen when the engine starts</b> is the more intrusive half: leave the phone in
+        the car and the dashboard appears over the lock screen by itself, once per drive.</p>
+      <p>How fast it notices depends on power. In a socket that switches off with the key, it wakes
+        as you turn it. Otherwise allow a minute or two.</p>
+      <div class="box warn">
+        <h3>Xiaomi, Redmi and POCO phones</h3>
+        <p>These need three switches no app may ask for, and without them it never wakes. All are in
+          your phone's Settings, under Apps: <b>Autostart</b>, then in the app's <b>Other
+          permissions</b>, <b>Show on Lock screen</b> and <b>Open new windows while running in the
+          background</b>.</p>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="frame"><img src="img/settings.jpg" width="480" height="959" loading="lazy" alt="Settings screen"></div>
+      <p class="sm">Settings: where readings come from, what this car reports, and the layout.</p>
+    </div>
+  </div>
+
+  <hr>
+  <div class="k">Staying up to date</div>
+  <p>Installed from Google Play, the app keeps itself up to date. An update that lands mid-drive does
+    not lose the trip: the app starts itself again and carries on recording.</p>
+
+  <hr>
+  <div class="k">Leaving the adapter plugged in</div>
+  <p>The socket has power even with the car off, so an adapter left in keeps drawing a little.
+    Driving daily or every other day, that is fine. Leaving the car a week or more, unplug it —
+    especially with an older battery.</p>
+  <p>Better adapters can be told to sleep, and the app asks yours to a couple of minutes after you
+    switch off. Cheap ones ignore it. Settings tells you which kind yours is, under <b>Sleep
+    command</b>.</p>
+
+  <div class="box">
+    <div class="k">Your data stays yours</div>
+    <p>No account, no server, no analytics. Nothing is sent anywhere unless you switch on Drive
+      backup, and that goes to your Drive and nobody else's. Your car's VIN is never read and no
+      location is recorded. The details are in the <a href="privacy.html">privacy policy</a>.</p>
+  </div>
+</section>
+
+<footer class="sm">
+  <p>Questions and requests: <a href="https://github.com/FahimHT/obd-dash-app/issues">GitHub issues</a></p>
+  <p>&copy; 2026 Owl Software Labs. All rights reserved.</p>
+</footer>
+
+</main>
+</body>
+</html>
