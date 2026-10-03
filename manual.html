@@ -67,7 +67,7 @@
   .beside > .shot.narrow { width: 10rem; }
   .shot .sm { margin-top: .55rem; }
 
-  .themes { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin-top: 1.1rem; }
+  .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem .75rem; margin-top: 1.1rem; }
   .themes figure { margin: 0; }
   .themes h3 { margin: .5rem 0 .15rem; }
 
@@ -91,7 +91,7 @@
   footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: var(--sans); }
 
   @media (max-width: 44rem) {
-    .themes { grid-template-columns: repeat(3, 1fr); }
+    .themes { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 40rem) {
     h1 { font-size: 2.3rem; }
@@ -102,7 +102,7 @@
     .box.split > .frame { width: 100%; }
   }
   @media (max-width: 30rem) {
-    .themes { grid-template-columns: repeat(2, 1fr); }
+    .themes { grid-template-columns: 1fr; }
     .icon { width: 64px; height: 64px; }
     .icon svg { width: 56px; height: 56px; }
   }
@@ -186,7 +186,8 @@
 <div class="box">
   <h3>Small circled <span class="info">i</span> marks, everywhere in the app</h3>
   <p>Tap one and the app explains what that reading is and what a healthy value looks like. They sit
-    on every reading that isn't obvious, so nothing here needs prior knowledge of engines.</p>
+    on every reading that isn't obvious, so nothing here needs prior knowledge of engines. The
+    Terminal theme marks the same readings with a dotted underline instead.</p>
 </div>
 
 <section>
@@ -198,23 +199,27 @@
 
   <div class="themes">
     <figure>
-      <div class="frame"><img src="img/cockpit-standard.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Standard theme"></div>
+      <div class="frame"><img src="img/cockpit-standard.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Standard theme"></div>
       <h3>Standard</h3><p class="sm">Plain figures and bars, the clearest at a distance.</p>
     </figure>
     <figure>
-      <div class="frame"><img src="img/cockpit-neon.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Neon Horizon theme"></div>
+      <div class="frame"><img src="img/cockpit-neon.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Neon Horizon theme"></div>
       <h3>Neon Horizon</h3><p class="sm">Glowing dials; speed and revs share one.</p>
     </figure>
     <figure>
-      <div class="frame"><img src="img/cockpit-flight-deck.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Flight Deck theme"></div>
+      <div class="frame"><img src="img/cockpit-flight-deck.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Flight Deck theme"></div>
       <h3>Flight Deck</h3><p class="sm">Aircraft tapes for speed and revs.</p>
     </figure>
     <figure>
-      <div class="frame"><img src="img/cockpit-chart-recorder.jpg" width="480" height="959" loading="lazy" alt="Cockpit in the Chart Recorder theme"></div>
+      <div class="frame"><img src="img/cockpit-chart-recorder.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Chart Recorder theme"></div>
       <h3>Chart Recorder</h3><p class="sm">The last minute of each reading, as a trace.</p>
     </figure>
     <figure>
-      <div class="frame"><img src="img/cockpit-neon-warp.jpg" width="480" height="959" loading="lazy" alt="Neon Horizon in warp"></div>
+      <div class="frame"><img src="img/cockpit-terminal.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Terminal theme, in sport"></div>
+      <h3>Terminal</h3><p class="sm">Each reading beside the PID it came from; tap a PID for what it is. Shown in sport.</p>
+    </figure>
+    <figure>
+      <div class="frame"><img src="img/cockpit-neon-warp.jpg" width="1000" height="453" loading="lazy" alt="Neon Horizon in warp"></div>
       <h3>Warp</h3><p class="sm">Neon Horizon on a hard pull or a steady cruise.</p>
     </figure>
   </div>
@@ -224,7 +229,7 @@
     <div>
       <div class="k">The strip along the top</div>
       <p>Always there: whether the phone has the car, whether the engine is running, and whether the
-        check engine light is on.</p>
+        check engine light is on. Terminal keeps it at the foot, as a prompt.</p>
       <p>Anything serious takes it over, pulls you back to the dashboard and chimes: twice for
         overheating or charging, once for a check engine light. Silent mode is respected.</p>
     </div>
