@@ -60,11 +60,19 @@
   /* Two blocks of prose side by side. */
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
-  /* Prose beside a phone screenshot. */
-  .beside { display: flex; gap: 1.9rem; align-items: flex-start; margin-top: 1.3rem; }
-  .beside > .text { flex: 1; min-width: 0; }
-  .beside > .shot { width: 12.5rem; flex: none; }
-  .beside > .shot.narrow { width: 10rem; }
+  /* Prose beside a phone screenshot. The prose may come in two parts with the screenshot between
+     them in the markup: side by side they stack in one column, and on a phone, in one column, the
+     screenshot then lands after the part it shows. */
+  .beside { display: grid; grid-template-columns: minmax(0, 1fr) 12.5rem; column-gap: 1.9rem;
+            grid-template-rows: auto 1fr; align-items: start; margin-top: 1.3rem; }
+  .beside.left { grid-template-columns: 12.5rem minmax(0, 1fr); }
+  .beside.narrow { grid-template-columns: minmax(0, 1fr) 10rem; }
+  .beside > .text { grid-column: 1; }
+  .beside.left > .text { grid-column: 2; }
+  /* Two rows: the screenshot spans both, and any height it adds goes under the second part of the text. */
+  .beside > .shot { grid-column: 2; grid-row: 1 / span 2; }
+  .beside.left > .shot { grid-column: 1; }
+  .beside > .text + .text { margin-top: 0; }
   .shot .sm { margin-top: .55rem; }
 
   .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem .75rem; margin-top: 1.1rem; }
@@ -94,8 +102,10 @@
   @media (max-width: 40rem) {
     h1 { font-size: 2.3rem; }
     .cols, .pair { grid-template-columns: 1fr; gap: 1.1rem; }
-    .beside { flex-direction: column; }
-    .beside > .shot, .beside > .shot.narrow { width: min(14rem, 70%); align-self: center; }
+    .beside, .beside.left, .beside.narrow { grid-template-columns: 1fr; grid-template-rows: none; }
+    .beside > .text, .beside.left > .text { grid-column: 1; }
+    .beside > .shot, .beside.left > .shot { grid-column: 1; grid-row: auto; width: min(14rem, 70%);
+                                             justify-self: center; margin: 1.1rem 0; }
   }
   @media (max-width: 30rem) {
     .themes { grid-template-columns: 1fr; }
@@ -219,6 +229,10 @@
       <h3>Recall</h3><p class="sm">Each dial keeps the drive's highest in blue, and the battery its range.</p>
     </figure>
     <figure>
+      <div class="frame"><img src="img/cockpit-blueprint.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Blueprint theme"></div>
+      <h3>Blueprint</h3><p class="sm">The car as an engineering drawing, each reading joined to the part it is about.</p>
+    </figure>
+    <figure>
       <div class="frame"><img src="img/cockpit-neon-warp.jpg" width="1000" height="453" loading="lazy" alt="Neon Horizon in warp"></div>
       <h3>Warp</h3><p class="sm">Neon Horizon on a hard pull or a steady cruise.</p>
     </figure>
@@ -254,8 +268,7 @@
   <div class="k">After the drive</div>
   <h2>Every drive is saved, and a slow change shows up in the charts.</h2>
 
-  <div class="beside">
-    <div class="shot frame"><img src="img/history.jpg" width="480" height="959" loading="lazy" alt="History screen"></div>
+  <div class="beside left">
     <div class="text">
       <h3>History</h3>
       <p>Reached from the clock icon in the dashboard footer. Every drive is listed with distance,
@@ -266,6 +279,9 @@
       <p>The second keeps economy in traffic apart from economy on the open road. Economy moves with
         weather, traffic and how you drive, so read it as a trend rather than a verdict on the
         engine.</p>
+    </div>
+    <div class="shot frame"><img src="img/history.jpg" width="480" height="959" loading="lazy" alt="History screen"></div>
+    <div class="text">
       <hr>
       <h3>It survives a new phone</h3>
       <p>History exports to a spreadsheet and reads back in. Or turn on <b>Back up to Google
@@ -282,6 +298,9 @@
       <p><b>Alerts raised</b> lists anything that went wrong, even briefly — a charging fault that
         came and went is something you would otherwise never know about. <b>Worth a look</b> is
         gentler: a reading outside its usual range, without being a fault.</p>
+    </div>
+    <div class="shot frame"><img src="img/trip-detail.jpg" width="480" height="959" loading="lazy" alt="Trip detail"></div>
+    <div class="text">
       <hr>
       <div class="k">More than one car</div>
       <p>Cars are added and chosen in Settings, under <b>Car</b>. The name at the top of History
@@ -289,7 +308,6 @@
       <p>A drive saved under the wrong car can be opened and sent across with <b>Move to another
         car</b>, or deleted from there. Deleting a car takes its trips with it.</p>
     </div>
-    <div class="shot frame"><img src="img/trip-detail.jpg" width="480" height="959" loading="lazy" alt="Trip detail"></div>
   </div>
 </section>
 
@@ -297,7 +315,7 @@
   <div class="k">Warnings, faults and inspections</div>
   <h2>A warning light tells you something is wrong, the app tells you what.</h2>
 
-  <div class="beside">
+  <div class="beside narrow">
     <div class="text">
       <h3>Fault codes, in plain English</h3>
       <p>When the check engine light comes on, the car has stored a code explaining why. Tap
@@ -306,6 +324,12 @@
       <p>It also saves a snapshot of what the engine was doing at the time. The same code at cold
         idle and at motorway speed often points somewhere different, and the snapshot is what a
         mechanic will want to see.</p>
+    </div>
+    <div class="shot">
+      <div class="frame"><img src="img/diagnostics.jpg" width="480" height="959" loading="lazy" alt="Diagnostics screen"></div>
+      <p class="sm">Diagnostics, with every self-test passed and no stored faults.</p>
+    </div>
+    <div class="text">
       <hr>
       <h3>Before you clear a warning light</h3>
       <p>The app can clear a stored fault, behind a confirmation. Clearing fixes nothing — if the
@@ -313,10 +337,6 @@
       <p>It also erases that snapshot and resets the self-tests below, so the car will <b>fail an
         inspection</b> until it has been driven enough to finish them. Useful after a repair; a bad
         idea the morning of an inspection.</p>
-    </div>
-    <div class="shot narrow">
-      <div class="frame"><img src="img/diagnostics.jpg" width="480" height="959" loading="lazy" alt="Diagnostics screen"></div>
-      <p class="sm">Diagnostics, with every self-test passed and no stored faults.</p>
     </div>
   </div>
 
@@ -356,6 +376,12 @@
         the car and the dashboard appears over the lock screen by itself, once per drive.</p>
       <p>How fast it notices depends on power. In a socket that switches off with the key, it wakes
         as you turn it. Otherwise allow a minute or two.</p>
+    </div>
+    <div class="shot">
+      <div class="frame"><img src="img/settings.jpg" width="480" height="965" loading="lazy" alt="Settings screen"></div>
+      <p class="sm">Settings: where readings come from, what this car reports, and the theme.</p>
+    </div>
+    <div class="text">
       <div class="box warn">
         <h3>Switches only you can set</h3>
         <p>Some phones add switches of their own that no app can ask for or check. If yours has
@@ -363,10 +389,6 @@
           start watching again after a restart or an update. <b>Show on lock screen</b> and
           <b>Open new windows while running in the background</b> let it wake the screen.</p>
       </div>
-    </div>
-    <div class="shot">
-      <div class="frame"><img src="img/settings.jpg" width="480" height="965" loading="lazy" alt="Settings screen"></div>
-      <p class="sm">Settings: where readings come from, what this car reports, and the theme.</p>
     </div>
   </div>
 
