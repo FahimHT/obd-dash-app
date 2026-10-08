@@ -13,7 +13,7 @@
     color-scheme: dark;
     --bg: #0F1115; --panel: #191C22; --panel-edge: #23272E; --rule: #262A31; --frame: #2C313A;
     --text: #C6C9D1; --head: #E9EAEE; --muted: #8C9099; --accent: #3DD68C;
-    --good-bg: #11241B; --good-edge: #1E4433; --warn-bg: #251D12; --warn-edge: #3E3020;
+    --warn-bg: #251D12; --warn-edge: #3E3020;
     --sans: Archivo, system-ui, sans-serif; --serif: "Source Serif 4", Georgia, serif;
   }
   * { box-sizing: border-box; }
@@ -83,7 +83,6 @@
     background: var(--panel); box-shadow: inset 0 0 0 1px var(--panel-edge);
     border-radius: 10px; padding: 1rem 1.15rem; margin-top: 1.4rem;
   }
-  .box.good { background: var(--good-bg); box-shadow: inset 0 0 0 1px var(--good-edge); }
   .box.warn { background: var(--warn-bg); box-shadow: inset 0 0 0 1px var(--warn-edge); }
   .box .k { color: var(--head); }
   .info {
@@ -115,7 +114,7 @@
 
   @media print {
     :root { --bg: #fff; --panel: #f4f5f7; --panel-edge: #d9dce1; --rule: #d9dce1;
-            --good-bg: #ecf7f1; --good-edge: #bfe3cf; --warn-bg: #fbf3e7; --warn-edge: #ead6b6;
+            --warn-bg: #fbf3e7; --warn-edge: #ead6b6;
             --text: #222; --head: #000; --muted: #555; --accent: #0a7a47; }
     main { max-width: none; padding: 0; }
     nav { display: none; }
@@ -148,8 +147,8 @@
     the steering wheel, your phone reads what the car reports over Bluetooth, and this app displays
     it — temperatures, voltage, fuel economy, and a plain-English explanation of any warning
     light.</p>
-  <p>Leave the phone in the car and it records every drive on its own. There is no account to make
-    and nothing is collected about you.</p>
+  <p>The app can record every drive on its own. There is no account to make and nothing is
+    collected about you.</p>
 </div>
 
 <figure>
@@ -241,10 +240,10 @@
   <hr>
   <div class="pair">
     <div>
-      <div class="k">The strip along the top</div>
+      <div class="k">The status strip</div>
       <p>Always there: whether the phone has the car, whether the engine is running, and whether the
-        check engine light is on. Terminal keeps it at the foot, as a prompt, and Recall under the
-        trip figures.</p>
+        check engine light is on. Most themes keep it along the top; Terminal keeps it at the foot,
+        as a prompt, and Recall under the trip figures.</p>
       <p>Anything serious takes it over, pulls you back to the dashboard and chimes: twice for
         overheating or a charging voltage that is too high, once for a check engine light. Silent
         mode is respected. A battery that is not being charged shows in amber without a chime; the
@@ -254,8 +253,8 @@
       <div class="k">Reading it at a glance</div>
       <p>Every theme is dark, so the screen does not light up the cabin at night.
         Green means a reading is where it should be, amber worth a look, red stop.</p>
-      <p>The display stays awake while the engine runs. If the phone isn't plugged in, turn that off
-        in Settings.</p>
+      <p>By default the display stays awake while the engine runs. It is a switch; see <i>Setting it
+        up, and living with it</i>.</p>
     </div>
   </div>
 
@@ -273,19 +272,21 @@
       <h3>History</h3>
       <p>Reached from the clock icon in the dashboard footer. Every drive is listed with distance,
         economy and fuel cost.</p>
-      <p>The two charts are the reason this screen exists. Battery voltage drifting down over weeks,
-        or peak coolant drifting up, is worth looking into. Neither shows up in one reading, only as
-        a line.</p>
+      <p>The two charts show what no single drive can. Battery voltage drifting down over weeks, or
+        peak coolant drifting up, is worth looking into. Neither shows up in one reading, only as a
+        trend.</p>
       <p>The second keeps economy in traffic apart from economy on the open road. Economy moves with
-        weather, traffic and how you drive, so read it as a trend rather than a verdict on the
-        engine.</p>
+        weather, traffic and how you drive, so compare it over weeks rather than reading one
+        figure as a verdict on the engine.</p>
     </div>
     <div class="shot frame"><img src="img/history.jpg" width="480" height="959" loading="lazy" alt="History screen"></div>
     <div class="text">
       <hr>
       <h3>It survives a new phone</h3>
-      <p>History exports to a spreadsheet and reads back in. Or turn on <b>Back up to Google
-        Drive</b>: sign in once on each phone and every drive, car and cost stays in step.</p>
+      <p><b>Export</b>, on the History screen, saves your history to a file — with more than one
+        car, tick every car to take them all — and <b>Import</b> on the new phone reads it back
+        in. Or turn on <b>Back up history to Google Drive</b>: sign in once on each phone and every
+        drive, car and cost stays in step.</p>
     </div>
   </div>
 
@@ -321,9 +322,10 @@
       <p>When the check engine light comes on, the car has stored a code explaining why. Tap
         <b>Read</b> on Diagnostics and you get it as a sentence, not the five-character number a
         cheap code reader gives you.</p>
-      <p>It also saves a snapshot of what the engine was doing at the time. The same code at cold
-        idle and at motorway speed often points somewhere different, and the snapshot is what a
-        mechanic will want to see.</p>
+      <p>The car also keeps a snapshot of what the engine was doing when the fault was recorded, and
+        <b>Read</b> shows it under <b>Freeze frame</b>. The same code at cold idle and at motorway
+        speed often points somewhere different, and the snapshot is what a mechanic will want to
+        see.</p>
     </div>
     <div class="shot">
       <div class="frame"><img src="img/diagnostics.jpg" width="480" height="959" loading="lazy" alt="Diagnostics screen"></div>
@@ -334,19 +336,11 @@
       <h3>Before you clear a warning light</h3>
       <p>The app can clear a stored fault, behind a confirmation. Clearing fixes nothing — if the
         cause remains, the car records it again, often within a day.</p>
-      <p>It also erases that snapshot and resets the self-tests below, so the car will <b>fail an
-        inspection</b> until it has been driven enough to finish them. Useful after a repair; a bad
-        idea the morning of an inspection.</p>
+      <p>It also erases that snapshot and resets the car's emissions self-tests, so the car will
+        <b>fail an inspection</b> until it has been driven enough to finish them. Diagnostics lists
+        them and says whether you are ready. Useful after a repair; a bad idea the morning of an
+        inspection.</p>
     </div>
-  </div>
-
-  <div class="box good">
-    <h3>Check this before you drive to a testing station</h3>
-    <p>Your car runs its own emissions self-tests as you drive, and an inspection fails if they
-      haven't all finished — even with nothing wrong with the car. Disconnecting the battery or
-      clearing a fault resets them.</p>
-    <p>Diagnostics lists them and says whether you are ready. If any are outstanding, a mix of town
-      and open-road driving over a day or two usually finishes them.</p>
   </div>
 
   <hr>
@@ -372,8 +366,12 @@
       <h3>It can start itself</h3>
       <p>Turn on <b>Watch the car in the background</b> and the app connects on its own, records the
         drive and lets go when you park. A notification shows what it is doing and can stop it.</p>
-      <p><b>Wake the screen when the engine starts</b> is the more intrusive half: leave the phone in
-        the car and the dashboard appears over the lock screen by itself, once per drive.</p>
+      <p><b>Wake the screen when the engine starts</b> is the more intrusive half: the dashboard
+        appears over the lock screen by itself, once per drive. <b>Keep the screen on while
+        driving</b> then holds it on while the engine runs, and hands it back to the phone's own
+        timeout when you switch off.</p>
+      <p>Settings also offers <b>Allow unrestricted battery use</b>. Without it, Android checks on a
+        parked car less often, so the app can take longer to notice you have set off.</p>
       <p>How fast it notices depends on power. In a socket that switches off with the key, it wakes
         as you turn it. Otherwise allow a minute or two.</p>
     </div>
@@ -384,10 +382,13 @@
     <div class="text">
       <div class="box warn">
         <h3>Switches only you can set</h3>
-        <p>Some phones add switches of their own that no app can ask for or check. If yours has
-          them, set them for this app in your phone's Settings, under Apps. <b>Autostart</b> lets it
-          start watching again after a restart or an update. <b>Show on lock screen</b> and
-          <b>Open new windows while running in the background</b> let it wake the screen.</p>
+        <p>A few switches can't be set by the app itself. Find them for this app in your phone's
+          Settings, under Apps. Turn off <b>Pause app activity if unused</b>: an app that runs on its
+          own may go months without being opened, and Android would then take its permissions
+          away.</p>
+        <p>Some phones add more of their own. <b>Autostart</b> lets it start watching again after a
+          restart or an update. <b>Show on lock screen</b> and <b>Open new windows while running in
+          the background</b> let it wake the screen.</p>
       </div>
     </div>
   </div>
