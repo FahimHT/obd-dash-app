@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OBD Dash manual</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="description" content="How to set up and use OBD Dash, an auxiliary gauge cluster for Android.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -305,6 +306,18 @@
     <div class="shot frame"><img src="img/trip-detail.jpg" width="480" height="959" loading="lazy" alt="Trip detail"></div>
     <div class="text">
       <hr>
+      <div class="k">Where you drove</div>
+      <p>With location on, each drive's route is recorded and shown on a map at the bottom of the
+        drive, fitted to the whole route; pinch to zoom, drag to move. <b>Whole route</b> fits it
+        again, and <b>Follow</b> keeps the marker in view. <b>Play</b> runs the marker along the route
+        and shows the car's readings at each point. The line is colored by one reading, in the
+        dashboard's colors, so a stretch where the engine ran hot shows amber.</p>
+      <p>To record with the phone locked, allow location <b>All the time</b>; Android asks on a
+        settings page, and the app takes you there once. With <b>While using the app</b>, a route is
+        recorded only while the app is on screen. A gap in the line is a tunnel or a parking
+        garage.</p>
+      <p>Routes are kept for your newest fifty drives. <b>Pin route</b> keeps one for good.</p>
+      <hr>
       <div class="k">More than one car</div>
       <p>Cars are added and chosen in Settings, under <b>Car</b>. The name at the top of History
         narrows the list to one car, and its charts and costs follow.</p>
@@ -396,17 +409,18 @@
   </div>
 
   <hr>
-  <div class="k">Find your phone</div>
-  <p>The first time the app asks for location, it explains both things location is used for: the
-    GPS needle on the speedometer, and <b>Find your phone</b> — this phone's position, sent to the
-    OBD Dash portal every few minutes, even with the app closed. Say <b>Allow</b> and choose a
-    Google account; then sign in at the portal with that account to see where the phone is. Handy
-    for a phone left in the car. Say <b>No thanks</b> and nothing is sent, and no location is asked
-    for.</p>
-  <p><b>Settings, Portal</b> shows whether the phone is reporting and under which account.
-    <b>Delete my portal data</b> removes every phone reporting under that account and stops this
-    one; <b>Report to the portal</b> starts it again. The portal's own <b>Delete my data</b> does
-    the same from a browser.</p>
+  <div class="k">Location</div>
+  <p>Location records the route of each drive. When the app first asks, it lists what it's for:
+    <b>Route history</b>, a <b>GPS speed</b> needle, and <b>Car location</b>. Say <b>Allow</b>,
+    then <b>All the time</b>, so a drive is recorded with the phone locked. Say <b>No thanks</b> and
+    no location is asked for.
+  </p>
+  <p><b>Settings, Location</b> shows what's working; <b>Turn on routes</b> asks again if location is
+    off. To stop it all, turn location off for OBD Dash in your phone's settings.</p>
+  <p><b>Car location</b> sends the position to the OBD Dash portal every few minutes.
+    Sign in there with the Google account you chose to see where the car is. <b>Delete my portal
+      data</b> in <b>Settings, Portal</b>, or <b>Delete my data</b> on the portal, removes what it
+    holds; with location on, the phone reports again within minutes.</p>
 
   <hr>
   <div class="k">Staying up to date</div>
@@ -425,9 +439,10 @@
   <div class="box">
     <div class="k">Your data stays yours</div>
     <p>No account to create, no analytics. Nothing is sent anywhere unless you choose it: Drive
-      backup goes to your Drive and nobody else's, and Find your phone sends only the phone's latest
-      position, which you can delete at any time. Your car's VIN is never read and no location
-      history is kept. The details are in the <a href="privacy.html">privacy policy</a>.</p>
+      backup goes to your Drive and nobody else's, routes included, and Car location sends only
+      the phone's latest position, which you can delete at any time. Your car's VIN is never read.
+      Routes stay on your phone, and in your Drive if you back up. The details are in the
+      <a href="privacy.html">privacy policy</a>.</p>
   </div>
 </section>
 

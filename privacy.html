@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OBD Dash — Privacy policy</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
   :root { color-scheme: light dark; }
   body {
@@ -24,10 +25,10 @@
 <p class="sub">OBD Dash, by Owl Software · last updated 20 November 2026</p>
 
 <p>
-  Almost everything OBD Dash records stays on your phone. Two things leave it, and only if you
-  choose them: backup to your own Google Drive, and the phone's position, sent to the OBD Dash
-  portal so you can see where your phone is. There is no account to create in order to use the
-  app.
+  Almost everything OBD Dash records stays on your phone, including the route of each drive. Two
+  things leave it, and only if you choose them: backup to your own Google Drive, and the phone's
+  position, sent to the OBD Dash portal so you can see where your phone is. There is no account to
+  create in order to use the app.
 </p>
 
 <h2>What the app records</h2>
@@ -38,6 +39,11 @@
   duration and the extremes each drive reached.
 </p>
 <p>
+  If you allow location, it also records each drive's route: the phone's position once a second
+  during a drive, with the car's readings, even with the app closed if you allow location all the
+  time. Routes are kept on your phone for your newest fifty drives and any you pin.
+</p>
+<p>
   It writes diagnostic log files to the phone's own storage, to make faults reproducible after a
   drive. You can clear or export these at any time from Settings.
 </p>
@@ -46,9 +52,9 @@
 <ul>
   <li><strong>The vehicle identification number is never requested.</strong> The app does not ask
       the car for it, so it cannot appear in any record or export.</li>
-  <li><strong>No location history.</strong> The speed comparison reads only the speed the
-      satellite receiver reports. The portal (below) keeps the phone's latest position alone;
-      each one replaces the last, and the phone keeps none.</li>
+  <li><strong>No location outside a drive.</strong> Routes are recorded only while a drive is
+      being recorded. The portal (below) keeps the phone's latest position alone; each one
+      replaces the last.</li>
   <li>Log files are filtered as they are written, so a vehicle identification number, a pair of
       coordinates or the identifying half of a Bluetooth address cannot be recorded even
       accidentally.</li>
@@ -60,14 +66,14 @@
   <li><strong>Bluetooth</strong> — to connect to the ELM327 adapter. This is the only way the app
       reaches the vehicle.</li>
   <li><strong>Location</strong> — optional, asked for only after the app has explained what it is
-      used for, and covering both uses: the satellite receiver's speed, compared against the
-      car's own speedometer, and the phone's position for the portal.</li>
-  <li><strong>Location all the time</strong> — optional, asked for only after you agree to the
-      portal, so the phone's position reaches it while the app is closed or not in use: the
-      case the portal exists for, a phone left in the car.</li>
+      used for, and covering every use: the route of each drive, the satellite receiver's speed
+      compared against the car's own speedometer, and the phone's position for the portal.</li>
+  <li><strong>Location all the time</strong> — optional, asked for after you allow location, so a
+      drive is recorded with the app closed, and the portal hears from a phone left in the car.</li>
   <li><strong>Notifications</strong> — optional, for the ongoing notification shown while the app
       watches for the car starting.</li>
-  <li><strong>Network access</strong> — used only for Google Drive backup and the portal.</li>
+  <li><strong>Network access</strong> — used only for Google Drive backup, the portal, and the map
+      a route is drawn on.</li>
 </ul>
 
 <h2>Google Drive backup</h2>
@@ -83,10 +89,23 @@
   <li>The files are stored in your own Google account, under your own storage quota. The
       developer has no access to them and no copy of them.</li>
   <li>The uploaded data is the same trip history the app already holds — dates, distances, fuel
-      figures, battery readings and fault codes — and the vehicle names you typed. It contains no
-      identification number and no location.</li>
+      figures, battery readings and fault codes — the vehicle names you typed, and the route of
+      each drive the phone keeps, one file per drive. It contains no identification number.</li>
   <li>Diagnostic log files are never uploaded.</li>
 </ul>
+<p>
+  <strong>Export</strong>, on the History screen, saves the same history to a file you choose,
+  routes included. Where that file goes is up to you.
+</p>
+
+<h2 id="map">The route map</h2>
+<p>
+  A drive's route is drawn on a map from <a href="https://openfreemap.org">OpenFreeMap</a>, built
+  from OpenStreetMap data. To show the map, the app downloads map images for the area on screen,
+  so OpenFreeMap sees which area is being viewed and your phone's internet address, as any website
+  sees a visitor. The route itself is never sent: it is drawn over the map on the phone. No
+  account or key is used, and nothing else is shared.
+</p>
 
 <h2 id="portal">The OBD Dash portal</h2>
 <p>
@@ -110,7 +129,8 @@
       position, its name, and the account's name and email -- in order to run and monitor the
       service, such as how many phones report, which devices, and in which regions. It is not sold
       or shared with anyone else.</li>
-  <li><strong>How long:</strong> until you delete it, or Owl Software removes it.</li>
+  <li><strong>How long:</strong> until you delete it, or Owl Software removes it. A phone with
+      location on reports again after a deletion; turn location off for the app to stop it.</li>
   <li>Sent over an encrypted connection (HTTPS) only.</li>
 </ul>
 
@@ -121,7 +141,7 @@
   it yourself, like this:
 </p>
 <ol>
-  <li><strong>One trip:</strong> History, open the trip, then Delete.</li>
+  <li><strong>One trip, and its route:</strong> History, open the trip, then Delete.</li>
   <li><strong>One vehicle and everything recorded for it:</strong> Settings, Car, then Delete.</li>
   <li><strong>All history on the phone:</strong> History, choose All cars, then Clear. Or
       uninstall the app, which removes everything it stored on the phone.</li>
@@ -132,16 +152,14 @@
   <li><strong>What the portal holds:</strong> in the app, Settings, Portal, then <em>Delete my
       portal data</em>; or, without the app, at
       <a href="https://obd-dash-portal.obd-dash-portal.workers.dev/delete">the portal's deletion
-      page</a>, signing in with the same Google account. Either removes every phone reporting under
-      your account and stops them reporting until you choose <em>Report to the portal</em> in the
-      app again.</li>
+      page</a>, signing in with the same Google account. Either removes every phone under your
+      account. A phone with location on reports again within minutes; turn location off for OBD Dash
+      to stop it.</li>
 </ol>
 <p>
   <strong>What is kept:</strong> nothing. Deleted data is gone at once, and no other copy exists
-  anywhere. The portal keeps only your account's email and the time you asked, so your phones'
-  next reports are refused rather than stored; choosing <em>Report to the portal</em> in the
-  app again removes that too. Items deleted from Google Drive follow Drive's own trash rules
-  until you empty it.
+  anywhere, and the portal keeps no record of the asking. Items deleted from Google Drive follow
+  Drive's own trash rules until you empty it.
 </p>
 
 <h2>Children</h2>
