@@ -21,12 +21,13 @@
 <body>
 
 <h1>Privacy policy</h1>
-<p class="sub">OBD Dash, by Owl Software · last updated 7 October 2026</p>
+<p class="sub">OBD Dash, by Owl Software · last updated 20 November 2026</p>
 
 <p>
-  OBD Dash has no servers. Nothing it records is sent to the developer, and there is no account
-  to create in order to use it. Everything below describes data that stays on your phone, except
-  where you explicitly turn on backup to your own Google Drive.
+  Almost everything OBD Dash records stays on your phone. Two things leave it, and only if you
+  choose them: backup to your own Google Drive, and the phone's position, sent to the OBD Dash
+  portal so you can see where your phone is. There is no account to create in order to use the
+  app.
 </p>
 
 <h2>What the app records</h2>
@@ -45,9 +46,9 @@
 <ul>
   <li><strong>The vehicle identification number is never requested.</strong> The app does not ask
       the car for it, so it cannot appear in any record or export.</li>
-  <li><strong>No location is stored.</strong> If you enable the optional speed comparison, the app
-      reads only the speed reported by the satellite receiver. Coordinates are never read, held
-      or written down.</li>
+  <li><strong>No location history.</strong> The speed comparison reads only the speed the
+      satellite receiver reports. The portal (below) keeps the phone's latest position alone;
+      each one replaces the last, and the phone keeps none.</li>
   <li>Log files are filtered as they are written, so a vehicle identification number, a pair of
       coordinates or the identifying half of a Bluetooth address cannot be recorded even
       accidentally.</li>
@@ -58,12 +59,15 @@
 <ul>
   <li><strong>Bluetooth</strong> — to connect to the ELM327 adapter. This is the only way the app
       reaches the vehicle.</li>
-  <li><strong>Location</strong> — optional. Used solely to read the speed the satellite receiver
-      reports, for comparison against the car's own speedometer. Android classifies speed from
-      the receiver as a location permission; no position is read or kept.</li>
+  <li><strong>Location</strong> — optional, asked for only after the app has explained what it is
+      used for, and covering both uses: the satellite receiver's speed, compared against the
+      car's own speedometer, and the phone's position for the portal.</li>
+  <li><strong>Location all the time</strong> — optional, asked for only after you agree to the
+      portal, so the phone's position reaches it while the app is closed or not in use: the
+      case the portal exists for, a phone left in the car.</li>
   <li><strong>Notifications</strong> — optional, for the ongoing notification shown while the app
       watches for the car starting.</li>
-  <li><strong>Network access</strong> — used only when Google Drive backup is turned on.</li>
+  <li><strong>Network access</strong> — used only for Google Drive backup and the portal.</li>
 </ul>
 
 <h2>Google Drive backup</h2>
@@ -84,11 +88,37 @@
   <li>Diagnostic log files are never uploaded.</li>
 </ul>
 
+<h2 id="portal">The OBD Dash portal</h2>
+<p>
+  This is optional. When the app first asks for location it explains the portal, and nothing is
+  sent unless you agree. When you do, the app sends the following to the portal every few
+  minutes, including while the app is closed or not in use, so you can see where your phone is
+  by signing in there with the same Google account:
+</p>
+<ul>
+  <li>the phone's latest position and how old it is;</li>
+  <li>an identifier for the phone (Android's ID for this app) and the phone's name;</li>
+  <li>the name and email address of the Google account you chose in the app, which the portal
+      confirms with Google on every request so nobody can report under your account.</li>
+</ul>
+<ul>
+  <li><strong>Where it is kept:</strong> in Owl Software's portal, a Cloudflare Worker with a
+      Cloudflare D1 database. Only the latest report per phone is kept; there is no location
+      history.</li>
+  <li><strong>Who can see it:</strong> you, by signing in with the Google account the phone
+      reports under; and Owl Software, who can see every phone's report -- its precise last
+      position, its name, and the account's name and email -- in order to run and monitor the
+      service, such as how many phones report, which devices, and in which regions. It is not sold
+      or shared with anyone else.</li>
+  <li><strong>How long:</strong> until you delete it, or Owl Software removes it.</li>
+  <li>Sent over an encrypted connection (HTTPS) only.</li>
+</ul>
+
 <h2 id="delete">Deleting your data</h2>
 <p>
-  Owl Software holds no copy of your data. OBD Dash has no servers, so there is nothing to
-  send a request for: everything the app records is on your phone and, if you turned on backup,
-  in your own Google Drive. You delete it yourself, like this:
+  Everything the app records is on your phone and, if you turned on backup, in your own Google
+  Drive. The one copy Owl Software holds is the portal's, if you agreed to it. You delete all of
+  it yourself, like this:
 </p>
 <ol>
   <li><strong>One trip:</strong> History, open the trip, then Delete.</li>
@@ -99,17 +129,25 @@
       Drive</em> under Settings, Backup; delete the <em>obd-dash</em> folder from your Google
       Drive; and remove the app's access in
       <a href="https://myaccount.google.com/permissions">your Google account permissions</a>.</li>
+  <li><strong>What the portal holds:</strong> in the app, Settings, Portal, then <em>Delete my
+      portal data</em>; or, without the app, at
+      <a href="https://obd-dash-portal.obd-dash-portal.workers.dev/delete">the portal's deletion
+      page</a>, signing in with the same Google account. Either removes every phone reporting under
+      your account and stops them reporting until you choose <em>Report to the portal</em> in the
+      app again.</li>
 </ol>
 <p>
   <strong>What is kept:</strong> nothing. Deleted data is gone at once, and no other copy exists
-  anywhere, so there is no retention period. Items deleted from Google Drive follow Drive's own
-  trash rules until you empty it.
+  anywhere. The portal keeps only your account's email and the time you asked, so your phones'
+  next reports are refused rather than stored; choosing <em>Report to the portal</em> in the
+  app again removes that too. Items deleted from Google Drive follow Drive's own trash rules
+  until you empty it.
 </p>
 
 <h2>Children</h2>
 <p>
-  The app is a vehicle instrument and is not directed at children. It collects no personal
-  information from anyone.
+  The app is a vehicle instrument and is not directed at children. The only personal information
+  it collects is what the portal section above lists, and only from somebody who agrees to it.
 </p>
 
 <h2>Changes</h2>
