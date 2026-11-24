@@ -94,6 +94,13 @@
 
   section { border-top: 1px solid var(--rule); margin-top: 2.6rem; padding-top: 2.2rem; }
 
+  /* Section links. The ids are permanent: links to them are shared outside this page, so a
+     reworded label keeps its id. The mark shows on hover, and always where there is no hover. */
+  [id] { scroll-margin-top: 1rem; }
+  .anchor { margin-left: .45em; color: var(--muted); text-decoration: none; font-weight: 400; opacity: 0; }
+  :hover > .anchor, .anchor:focus-visible { opacity: 1; }
+  @media (hover: none) { .anchor { opacity: .55; } }
+
   footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: var(--sans); }
 
   @media (max-width: 44rem) {
@@ -118,7 +125,7 @@
             --warn-bg: #fbf3e7; --warn-edge: #ead6b6;
             --text: #222; --head: #000; --muted: #555; --accent: #0a7a47; }
     main { max-width: none; padding: 0; }
-    nav { display: none; }
+    nav, .anchor { display: none; }
     section { break-before: page; border-top: 0; margin-top: 0; padding-top: 0; }
     figure, .box, .shot { break-inside: avoid; }
   }
@@ -159,7 +166,7 @@
 </figure>
 
 <hr>
-<div class="k">What you need</div>
+<div class="k" id="requirements">What you need<a class="anchor" href="#requirements" aria-label="Link to this part">#</a></div>
 <div class="cols">
   <div><h3>An Android phone</h3><p class="sm">Version 12 or newer.</p></div>
   <div><h3>An OBD2 adapter</h3><p class="sm">Bluetooth, sold everywhere. The inexpensive ones mostly work fine.</p></div>
@@ -167,7 +174,7 @@
 </div>
 
 <hr>
-<div class="k">Getting started</div>
+<div class="k" id="getting-started">Getting started<a class="anchor" href="#getting-started" aria-label="Link to this part">#</a></div>
 <div class="cols">
   <div>
     <div class="num">1</div>
@@ -187,20 +194,20 @@
   </div>
 </div>
 
-<div class="box">
-  <h3>Small circled <span class="info">i</span> marks, everywhere in the app</h3>
+<div class="box" id="info-marks">
+  <h3>Small circled <span class="info">i</span> marks, everywhere in the app<a class="anchor" href="#info-marks" aria-label="Link to this part">#</a></h3>
   <p>Tap one and the app explains what that reading is and what a healthy value looks like. They sit
     on every reading that isn't obvious, so nothing here needs prior knowledge of engines.</p>
 </div>
 
-<section>
-  <div class="k">The cockpit</div>
+<section id="cockpit">
+  <div class="k">The cockpit<a class="anchor" href="#cockpit" aria-label="Link to this part">#</a></div>
   <h2>Everything on one screen. Nothing needs a tap while moving.</h2>
   <p style="margin-top:.8rem">Speed, revs, load, economy, coolant and battery on one panel, with the
     drive's totals underneath. It turns sideways with the phone, and one swipe brings up
     <b>Diagnostics</b>. Pick its look in Settings, under <b>Display</b>, or long-press the cockpit to switch to the next one.</p>
 
-  <div class="themes">
+  <div class="themes" id="themes">
     <figure>
       <div class="frame"><img src="img/cockpit-standard.jpg" width="1000" height="453" loading="lazy" alt="Cockpit in the Standard theme"></div>
       <h3>Standard</h3><p class="sm">Plain figures and bars, the clearest at a distance.</p>
@@ -238,7 +245,7 @@
   <hr>
   <div class="pair">
     <div>
-      <div class="k">The status strip</div>
+      <div class="k" id="status-strip">The status strip<a class="anchor" href="#status-strip" aria-label="Link to this part">#</a></div>
       <p>Always there: whether the phone has the car, whether the engine is running, and whether the
         check engine light is on.</p>
       <p>Anything serious takes it over, pulls you back to the dashboard and chimes: twice for
@@ -247,14 +254,14 @@
         car's own battery light is the alarm for that.</p>
     </div>
     <div>
-      <div class="k">Reading it at a glance</div>
+      <div class="k" id="colors">Reading it at a glance<a class="anchor" href="#colors" aria-label="Link to this part">#</a></div>
       <p>Every theme is dark, so the screen does not light up the cabin at night.
         Green means a reading is where it should be, amber worth a look, red stop.</p>
       <p>By default the display stays awake while the engine runs.</p>
     </div>
   </div>
 
-  <div class="k" style="margin-top:1.1rem">Over your map</div>
+  <div class="k" id="picture-in-picture" style="margin-top:1.1rem">Over your map<a class="anchor" href="#picture-in-picture" aria-label="Link to this part">#</a></div>
   <p>Leave the cockpit while the engine is running, with home or back, and it shrinks to a small
     window over whatever you open next, such as your navigation. It shows one or two readings as
     dials, coolant and battery to start with; choose them in Settings, under
@@ -270,13 +277,13 @@
     history.</p>
 </section>
 
-<section>
-  <div class="k">After the drive</div>
+<section id="drives">
+  <div class="k">After the drive<a class="anchor" href="#drives" aria-label="Link to this part">#</a></div>
   <h2>Every drive is saved, and a slow change shows up in the charts.</h2>
 
   <div class="beside left">
     <div class="text">
-      <h3>History</h3>
+      <h3 id="history">History<a class="anchor" href="#history" aria-label="Link to this part">#</a></h3>
       <p>Reached from the clock icon in the dashboard footer.</p>
       <p>The two charts show what no single drive can. Battery voltage drifting down over weeks, or
         peak coolant drifting up, is worth looking into.</p>
@@ -287,7 +294,7 @@
     <div class="shot frame"><img src="img/history.jpg" width="480" height="959" loading="lazy" alt="History screen"></div>
     <div class="text">
       <hr>
-      <h3>It survives a new phone</h3>
+      <h3 id="backup">It survives a new phone<a class="anchor" href="#backup" aria-label="Link to this part">#</a></h3>
       <p><b>Export</b>, on the History screen, saves your history to a file, and <b>Import</b>
         on the new phone reads it back in. Or turn on <b>Back up history to Google Drive</b>: sign in
         once on each phone and every drive, car and cost stays in step.</p>
@@ -297,7 +304,7 @@
   <hr>
   <div class="beside">
     <div class="text">
-      <div class="k">One drive in detail</div>
+      <div class="k" id="trip-detail">One drive in detail<a class="anchor" href="#trip-detail" aria-label="Link to this part">#</a></div>
       <p>Tap any trip for its cost, time moving and stopped, and its highs and lows.</p>
       <p><b>Alerts raised</b> lists anything that went wrong, even briefly — a charging fault that
         came and went is something you would otherwise never know about. <b>Worth a look</b> is
@@ -309,7 +316,7 @@
   <hr>
   <div class="beside left">
     <div class="text">
-      <div class="k">Where you drove</div>
+      <div class="k" id="routes">Where you drove<a class="anchor" href="#routes" aria-label="Link to this part">#</a></div>
       <p>With location on, each drive's route is recorded and shown on a map at the bottom of the
         drive, colored by speed. Any other reading can color it instead; with coolant, a stretch where the engine ran hot shows amber.
         A gap in the line is a tunnel or a parking garage.</p>
@@ -319,7 +326,7 @@
     <div class="shot frame"><img src="img/route.jpg" width="480" height="959" loading="lazy" alt="A drive's route on a map, with the readings at one point along it"></div>
     <div class="text">
       <hr>
-      <div class="k">More than one car</div>
+      <div class="k" id="cars">More than one car<a class="anchor" href="#cars" aria-label="Link to this part">#</a></div>
       <p>Cars are added and chosen in Settings, under <b>Car</b>.</p>
       <p>A drive saved under the wrong car can be opened and sent across with <b>Move to another
         car</b>, or deleted from there. Deleting a car takes its trips with it.</p>
@@ -327,13 +334,13 @@
   </div>
 </section>
 
-<section>
-  <div class="k">Warnings, faults and inspections</div>
+<section id="diagnostics">
+  <div class="k">Warnings, faults and inspections<a class="anchor" href="#diagnostics" aria-label="Link to this part">#</a></div>
   <h2>A warning light tells you something is wrong, the app tells you what.</h2>
 
   <div class="beside narrow">
     <div class="text">
-      <h3>Fault codes, in plain English</h3>
+      <h3 id="fault-codes">Fault codes, in plain English<a class="anchor" href="#fault-codes" aria-label="Link to this part">#</a></h3>
       <p>When the check engine light comes on, the car has stored a code explaining why. Tap
         <b>Read</b> on Diagnostics and you get it as a sentence, not the five-character number a
         cheap code reader gives you.</p>
@@ -348,7 +355,7 @@
     </div>
     <div class="text">
       <hr>
-      <h3>Before you clear a warning light</h3>
+      <h3 id="clearing-codes">Before you clear a warning light<a class="anchor" href="#clearing-codes" aria-label="Link to this part">#</a></h3>
       <p>The app can clear a stored fault. Clearing fixes nothing — if the
         cause remains, the car records it again, often within a day.</p>
       <p>It also erases that snapshot and resets the car's emissions self-tests, so the car will
@@ -359,26 +366,26 @@
   </div>
 
   <hr>
-  <div class="k">If a reading is missing, or something isn't working</div>
+  <div class="k" id="troubleshooting">If a reading is missing, or something isn't working<a class="anchor" href="#troubleshooting" aria-label="Link to this part">#</a></div>
   <p>Settings reports what your car and adapter turned out to be capable of, including any readings
     your car doesn't provide — normal, and it varies by model. <b>Share log files</b> bundles the
     app's own records to be sent on; nothing identifying goes in them.</p>
 
-  <div class="box">
-    <h3>Fuel, costs and units</h3>
+  <div class="box" id="fuel-and-units">
+    <h3>Fuel, costs and units<a class="anchor" href="#fuel-and-units" aria-label="Link to this part">#</a></h3>
     <p>Tell the app what you pay per liter or gallon and every drive shows its cost. Metric or
       imperial changes only the display, never what is recorded. <b>FUEL CUT</b> in place of economy
       is normal: coasting, or a hybrid on its battery, burns nothing.</p>
   </div>
 </section>
 
-<section>
-  <div class="k">Setting it up, and living with it</div>
+<section id="everyday-use">
+  <div class="k">Setting it up, and living with it<a class="anchor" href="#everyday-use" aria-label="Link to this part">#</a></div>
   <h2>Set up once and you can stop opening the app altogether.</h2>
 
   <div class="beside">
     <div class="text">
-      <h3>It can start itself</h3>
+      <h3 id="background">It can start itself<a class="anchor" href="#background" aria-label="Link to this part">#</a></h3>
       <p>Turn on <b>Watch the car in the background</b> and the app connects on its own, records the
         drive and lets go when you park. A notification shows what it is doing.</p>
       <p><b>Wake the screen when the engine starts</b> is the more intrusive half: the dashboard
@@ -395,8 +402,8 @@
       <p class="sm">Settings: one row per category, each showing where it stands. Tap one to open it.</p>
     </div>
     <div class="text">
-      <div class="box warn">
-        <h3>Switches only you can set</h3>
+      <div class="box warn" id="phone-settings">
+        <h3>Switches only you can set<a class="anchor" href="#phone-settings" aria-label="Link to this part">#</a></h3>
         <p>A few switches can't be set by the app itself. Find them for this app in your phone's
           Settings, under Apps. Turn off <b>Pause app activity if unused</b>: an app that runs on its
           own may go months without being opened, and Android would then take its permissions
@@ -409,7 +416,7 @@
   </div>
 
   <hr>
-  <div class="k">Location</div>
+  <div class="k" id="location">Location<a class="anchor" href="#location" aria-label="Link to this part">#</a></div>
   <p>Location records the route of each drive. When the app first asks, it lists what it's for:
     <b>Route history</b>, a <b>GPS speed</b> needle, and <b>Car location</b>. Say <b>Allow</b>,
     then <b>All the time</b>, so a drive is recorded with the phone locked; Android asks that on a
@@ -418,18 +425,18 @@
   </p>
   <p><b>Settings, Location</b> shows what's working; <b>Allow location</b> asks again if location is
     off. To stop it all, turn location off for OBD Dash in your phone's settings.</p>
-  <p><b>Car location</b> sends the position to the OBD Dash portal every few minutes.
+  <p id="car-location"><b>Car location</b> sends the position to the OBD Dash portal every few minutes.
     Sign in there with the Google account you chose to see where the car is. <b>Delete my portal
       data</b> in <b>Settings, Location</b>, or <b>Delete my data</b> on the portal, removes what it
     holds; with location on, the phone reports again within minutes.</p>
 
   <hr>
-  <div class="k">Updates mid-drive</div>
+  <div class="k" id="updates">Updates mid-drive<a class="anchor" href="#updates" aria-label="Link to this part">#</a></div>
   <p>An update that lands mid-drive does
     not lose the trip: the app starts itself again, with Autostart on, and carries on recording.</p>
 
   <hr>
-  <div class="k">Leaving the adapter plugged in</div>
+  <div class="k" id="adapter-sleep">Leaving the adapter plugged in<a class="anchor" href="#adapter-sleep" aria-label="Link to this part">#</a></div>
   <p>The socket has power even with the car off, so an adapter left in keeps drawing a little.
     Driving daily or every other day, that is fine. Leaving the car a week or more, unplug it —
     especially with an older battery.</p>
@@ -437,8 +444,8 @@
     switch off. Cheap ones ignore it. Settings tells you which kind yours is, under <b>Sleep
     command</b>.</p>
 
-  <div class="box">
-    <div class="k">Your data stays yours</div>
+  <div class="box" id="privacy">
+    <div class="k">Your data stays yours<a class="anchor" href="#privacy" aria-label="Link to this part">#</a></div>
     <p>No account to create, no analytics. Nothing is sent anywhere unless you choose it: Drive
       backup goes to your Drive and nobody else's, routes included, and Car location sends only
       the phone's latest position, which you can delete at any time. Your car's VIN is never read.
