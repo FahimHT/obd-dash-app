@@ -22,12 +22,13 @@
 <body>
 
 <h1>Privacy policy</h1>
-<p class="sub">OBD Dash, by Owl Software · last updated 27 November 2026</p>
+<p class="sub">OBD Dash, by Owl Software · last updated 28 November 2026</p>
 
 <p>
-  Almost everything OBD Dash records stays on your phone, including the route of each drive. Two
-  things leave it, and only if you choose them: backup to your own Google Drive, and the phone's
-  position, sent to the OBD Dash portal so you can see where your phone is. There is no account to
+  Almost everything OBD Dash records stays on your phone, including the route of each drive.
+  Three things leave it, and only if you choose them: backup to your own Google Drive, the phone's
+  position, sent to the OBD Dash portal so you can see where your phone is, and, if you join the
+  leaderboard, a summary of each trip, shown to other users as totals beside your display name. There is no account to
   create in order to use the app.
 </p>
 
@@ -72,7 +73,8 @@
       drive is recorded with the app closed, and the portal hears from a phone left in the car.</li>
   <li><strong>Notifications</strong> — optional, for the ongoing notification shown while the app
       watches for the car starting.</li>
-  <li><strong>Network access</strong> — used only for Google Drive backup, the portal, and the map
+  <li><strong>Network access</strong> — used only for Google Drive backup, the portal and the
+      leaderboard, the leaderboard's Google profile photos, and the map
       a route is drawn on.</li>
 </ul>
 
@@ -136,10 +138,40 @@
   <li>Sent over an encrypted connection (HTTPS) only.</li>
 </ul>
 
+<h2 id="leaderboard">The leaderboard</h2>
+<p>
+  This is optional and off until you join it in the app, under Settings, Leaderboard, which says
+  what is sent before you do. It uses the Google account you chose in the app, and nothing is sent
+  without it. When you join, the app sends to the OBD Dash portal:
+</p>
+<ul>
+  <li>the display name you pick, and, only if you turn it on, your Google profile photo, which the
+      portal reads from Google itself;</li>
+  <li>for each trip from the last 365 days, and then each new trip once a day: an identifier for the
+      trip and one for its car, both made on the phone so they carry no time or name, the date it
+      started (the day, not the time), the distance and the fuel used. Never the time of day, the
+      route, any position, or the car's name.</li>
+</ul>
+<ul>
+  <li><strong>Who can see it:</strong> other people signed in to OBD Dash see your display name,
+      your photo if you chose it, and four figures over the last 7, 30 and 365 days: fuel economy
+      against your own car's usual, fuel saved, distance and drive days. The board shows the top
+      ten of each, and each person their own place. It is not visible on the web. Owl Software
+      can see every member's name and account email, to run the service and to hide a name
+      somebody reports.</li>
+  <li><strong>Reports:</strong> if you report a name, the portal keeps that your account reported
+      it, until the name changes or either account leaves.</li>
+  <li><strong>How long:</strong> each trip is kept for 90 days, then only its day's totals, for a
+      year; nothing older is kept. Leaving deletes all of it at once.</li>
+  <li><strong>Favorites</strong> you star, and names you hide for yourself, stay on your phone and are never sent.</li>
+  <li>Kept in the same Cloudflare Worker and D1 database as the portal, sent over HTTPS only, not
+      sold or shared with anyone else.</li>
+</ul>
+
 <h2 id="delete">Deleting your data</h2>
 <p>
   Everything the app records is on your phone and, if you turned on backup, in your own Google
-  Drive. The one copy Owl Software holds is the portal's, if you agreed to it. You delete all of
+  Drive. The copies Owl Software holds are the portal's and the leaderboard's, if you chose them. You delete all of
   it yourself, like this:
 </p>
 <ol>
@@ -155,8 +187,10 @@
       portal data</em>; or, without the app, at
       <a href="https://obd-dash-portal.obd-dash-portal.workers.dev/delete">the portal's deletion
       page</a>, signing in with the same Google account. Either removes every phone under your
-      account. A phone with location on reports again at its next check-in; turn location off for OBD Dash
-      to stop it.</li>
+      account, and also takes you off the leaderboard. A phone with location on reports again at
+      its next check-in; turn location off for OBD Dash to stop it.</li>
+  <li><strong>The leaderboard:</strong> in the app, Settings, Leaderboard, then <em>Leave</em>.
+      Your name, every trip sent and their totals are deleted at once.</li>
 </ol>
 <p>
   <strong>What is kept:</strong> nothing. Deleted data is gone at once, and no other copy exists
@@ -167,7 +201,8 @@
 <h2>Children</h2>
 <p>
   The app is a vehicle instrument and is not directed at children. The only personal information
-  it collects is what the portal section above lists, and only from somebody who agrees to it.
+  it collects is what the portal and leaderboard sections above list, and only from somebody who
+  agrees to it.
 </p>
 
 <h2>Changes</h2>
